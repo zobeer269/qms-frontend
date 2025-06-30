@@ -29,11 +29,11 @@
 
 لتشغيل هذا المشروع على جهازك المحلي، اتبع الخطوات التالية:
 
-1.  **المتطلب الأساسي:** تأكد من أن [الواجهة الخلفية (qms-backend)](https://github.com/YourUsername/qms-backend) تعمل بالفعل، لأن هذا المشروع يعتمد عليها لجلب البيانات.
+1.  **المتطلب الأساسي:** تأكد من أن [الواجهة الخلفية (qms-backend)](https://github.com/zobeer269/qms-backend) تعمل بالفعل، لأن هذا المشروع يعتمد عليها لجلب البيانات.
 
 2.  **استنساخ المستودع:**
     ```bash
-    git clone [https://github.com/YourUsername/qms-frontend.git](https://github.com/YourUsername/qms-frontend.git)
+    git clone [https://github.com/zobeer269/qms-frontend.git](https://github.com/YourUsername/qms-frontend.git)
     cd qms-frontend
     ```
 
