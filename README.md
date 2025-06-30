@@ -33,7 +33,7 @@
 
 2.  **استنساخ المستودع:**
     ```bash
-    git clone [https://github.com/zobeer269/qms-frontend.git](https://github.com/YourUsername/qms-frontend.git)
+    git clone [https://github.com/zobeer269/qms-frontend.git](https://github.com/zobeer269/qms-frontend.git)
     cd qms-frontend
     ```
 
