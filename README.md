@@ -1,29 +1,27 @@
-# نظام إدارة الجودة الشاملة (QMS) - الواجهة الخلفية
+# نظام إدارة الجودة الشاملة (QMS) - الواجهة الأمامية
 
-هذا المشروع يمثل الواجهة الخلفية (Backend) لتطبيق نظام إدارة الجودة (QMS) لمكتب علمي متخصص في قطاع الأدوية والمستلزمات الطبية. تم بناؤه باستخدام Django و Django REST Framework.
+هذا المشروع يمثل الواجهة الأمامية (Frontend) لتطبيق نظام إدارة الجودة (QMS). تم بناؤه باستخدام React ويهدف إلى توفير واجهة مستخدم تفاعلية وسهلة الاستخدام للتفاعل مع الـ Backend API.
 
 ---
 
 ## الميزات الرئيسية
 
-- **نظام مصادقة آمن:** باستخدام JWT (JSON Web Tokens).
-- **إدارة المستخدمين والصلاحيات:** نظام أدوار متكامل (RBAC).
-- **إدارة الوثائق:** دورة حياة كاملة للوثائق من الإنشاء إلى الأرشفة.
-- **إدارة أحداث الجودة:** تسجيل ومتابعة تقارير عدم المطابقة (NCRs).
-- **إدارة التدقيق:** تخطيط وجدولة عمليات التدقيق وتسجيل النتائج.
-- **إدارة التدريب:** ربط التدريبات بالوثائق وتتبع سجلات الموظفين.
-- **واجهة API متكاملة:** واجهات RESTful API لكل وحدات النظام.
+- **نظام توجيه (Routing):** تطبيق متعدد الصفحات باستخدام `react-router-dom`.
+- **إدارة الحالة المركزية:** استخدام Context API لإدارة حالة المصادقة (Authentication).
+- **لوحة تحكم ديناميكية:** عرض مؤشرات أداء رئيسية (KPIs) ورسوم بيانية تفاعلية (دائرية وشريطية) بناءً على بيانات حية من الـ API.
+- **واجهات CRUD متكاملة:** صفحات لعرض القوائم، التفاصيل، وتعديل البيانات لوحدات النظام المختلفة.
+- **تصميم احترافي:** استخدام مكتبة Material-UI (MUI) لبناء واجهة مستخدم عصرية ومتجاوبة.
+- **اتصال آمن بالـ API:** استخدام `axios` مع "معترض طلبات" لإضافة توكن المصادقة تلقائيًا.
 
 ---
 
 ## التقنيات المستخدمة
 
-* **Python 3.13**
-* **Django 5.2**
-* **Django REST Framework**
-* **Simple JWT** for token authentication
-* **django-cors-headers** for handling Cross-Origin requests
-* **Gunicorn** for production server
+* **React 18**
+* **React Router DOM v6** for routing
+* **Axios** for making API requests
+* **Material-UI (MUI)** for UI components
+* **Chart.js** for data visualization
 
 ---
 
@@ -31,38 +29,25 @@
 
 لتشغيل هذا المشروع على جهازك المحلي، اتبع الخطوات التالية:
 
-1.  **استنساخ المستودع:**
-    ```bash
-    git clone [https://github.com/YourUsername/qms-backend.git](https://github.com/YourUsername/qms-backend.git)
-    cd qms-backend
-    ```
+1.  **المتطلب الأساسي:** تأكد من أن [الواجهة الخلفية (qms-backend)](https://github.com/YourUsername/qms-backend) تعمل بالفعل، لأن هذا المشروع يعتمد عليها لجلب البيانات.
 
-2.  **إنشاء وتفعيل البيئة الافتراضية:**
+2.  **استنساخ المستودع:**
     ```bash
-    python -m venv venv
-    # On Windows
-    .\venv\Scripts\activate
-    # On macOS/Linux
-    source venv/bin/activate
+    git clone [https://github.com/YourUsername/qms-frontend.git](https://github.com/YourUsername/qms-frontend.git)
+    cd qms-frontend
     ```
 
 3.  **تثبيت المكتبات المطلوبة:**
     ```bash
-    pip install -r requirements.txt
+    npm install
     ```
 
-4.  **تطبيق الهجرات على قاعدة البيانات:**
+4.  **تشغيل خادم التطوير:**
     ```bash
-    python manage.py migrate
+    npm start
     ```
+    سيقوم هذا الأمر بفتح نافذة جديدة في المتصفح تلقائيًا على العنوان `http://localhost:3000`.
 
-5.  **(اختياري) إنشاء مستخدم خارق:**
-    ```bash
-    python manage.py createsuperuser
-    ```
-
-6.  **تشغيل خادم التطوير:**
-    ```bash
-    python manage.py runserver
-    ```
-    سيصبح التطبيق متاحًا على `http://127.0.0.1:8000`.
+---
+## ملاحظات هامة
+- يتوقع هذا المشروع أن الواجهة الخلفية تعمل على العنوان `http://127.0.0.1:8000`. إذا قمت بتغيير المنفذ، يجب تعديل ملف `src/api/axiosConfig.js`.
