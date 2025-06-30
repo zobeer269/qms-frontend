@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# نظام إدارة الجودة الشاملة (QMS) - الواجهة الخلفية
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+هذا المشروع يمثل الواجهة الخلفية (Backend) لتطبيق نظام إدارة الجودة (QMS) لمكتب علمي متخصص في قطاع الأدوية والمستلزمات الطبية. تم بناؤه باستخدام Django و Django REST Framework.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## الميزات الرئيسية
 
-### `npm start`
+- **نظام مصادقة آمن:** باستخدام JWT (JSON Web Tokens).
+- **إدارة المستخدمين والصلاحيات:** نظام أدوار متكامل (RBAC).
+- **إدارة الوثائق:** دورة حياة كاملة للوثائق من الإنشاء إلى الأرشفة.
+- **إدارة أحداث الجودة:** تسجيل ومتابعة تقارير عدم المطابقة (NCRs).
+- **إدارة التدقيق:** تخطيط وجدولة عمليات التدقيق وتسجيل النتائج.
+- **إدارة التدريب:** ربط التدريبات بالوثائق وتتبع سجلات الموظفين.
+- **واجهة API متكاملة:** واجهات RESTful API لكل وحدات النظام.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## التقنيات المستخدمة
 
-### `npm test`
+* **Python 3.13**
+* **Django 5.2**
+* **Django REST Framework**
+* **Simple JWT** for token authentication
+* **django-cors-headers** for handling Cross-Origin requests
+* **Gunicorn** for production server
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## كيفية الإعداد والتشغيل المحلي
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+لتشغيل هذا المشروع على جهازك المحلي، اتبع الخطوات التالية:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.  **استنساخ المستودع:**
+    ```bash
+    git clone [https://github.com/YourUsername/qms-backend.git](https://github.com/YourUsername/qms-backend.git)
+    cd qms-backend
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2.  **إنشاء وتفعيل البيئة الافتراضية:**
+    ```bash
+    python -m venv venv
+    # On Windows
+    .\venv\Scripts\activate
+    # On macOS/Linux
+    source venv/bin/activate
+    ```
 
-### `npm run eject`
+3.  **تثبيت المكتبات المطلوبة:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4.  **تطبيق الهجرات على قاعدة البيانات:**
+    ```bash
+    python manage.py migrate
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5.  **(اختياري) إنشاء مستخدم خارق:**
+    ```bash
+    python manage.py createsuperuser
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+6.  **تشغيل خادم التطوير:**
+    ```bash
+    python manage.py runserver
+    ```
+    سيصبح التطبيق متاحًا على `http://127.0.0.1:8000`.
