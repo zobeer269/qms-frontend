@@ -26,11 +26,10 @@ function App() {
   const { token } = useAuth();
 
   // هذا المكون هو "الحارس" الذي يحمي كل الصفحات الداخلية
-  function PrivateOutlet() {
-    // إذا كان المستخدم مسجلاً دخوله (يوجد توكن)، نعرض الهيكل العام للتطبيق (Layout)
-    // الذي بدوره سيعرض الصفحة المطلوبة عبر <Outlet />
+  function PrivateRoute({ children }) {
+    // إذا كان المستخدم مسجلاً دخوله (يوجد توكن)، نعرض المحتوى
     // إذا لم يكن مسجلاً دخوله، نوجهه إلى صفحة الدخول
-    return token ? <Layout /> : <Navigate to="/login" />;
+    return token ? children : <Navigate to="/login" />;
   }
 
   return (
@@ -40,21 +39,21 @@ function App() {
         {/* إذا كان المستخدم مسجلاً دخوله بالفعل وحاول الذهاب لصفحة الدخول، نوجهه للرئيسية */}
         <Route path="/login" element={token ? <Navigate to="/" /> : <Login />} />
         
-        {/* المسار الثاني: كل المسارات المحمية داخل التطبيق */}
-        {/* نستخدم "/*" ليمثل كل العناوين الأخرى، ونحميه بـ PrivateOutlet */}
-        <Route path="/*" element={<PrivateOutlet />}>
-            {/* هذه المسارات الفرعية سيتم عرضها داخل ה-Layout.
-              الـ "index" هو المسار الافتراضي عند زيارة "/"
-            */}
-            <Route index element={<Dashboard />} />
-            <Route path="documents" element={<DocumentsPage />} />
-            <Route path="documents/:id" element={<DocumentDetailPage />} />
-            <Route path="quality-events" element={<QualityEventsPage />} />
-            <Route path="quality-events/:id" element={<NCRDetailPage />} />
-            <Route path="audits" element={<AuditsPage />} />
-            <Route path="audits/:id" element={<AuditDetailPage />} />
-            <Route path="trainings" element={<TrainingsPage />} />
-            <Route path="trainings/:id" element={<TrainingDetailPage />} />
+        {/* كل المسارات المحمية داخل Layout */}
+        <Route path="/" element={
+          <PrivateRoute>
+            <Layout />
+          </PrivateRoute>
+        }>
+          <Route index element={<Dashboard />} />
+          <Route path="documents" element={<DocumentsPage />} />
+          <Route path="documents/:id" element={<DocumentDetailPage />} />
+          <Route path="quality-events" element={<QualityEventsPage />} />
+          <Route path="quality-events/:id" element={<NCRDetailPage />} />
+          <Route path="audits" element={<AuditsPage />} />
+          <Route path="audits/:id" element={<AuditDetailPage />} />
+          <Route path="trainings" element={<TrainingsPage />} />
+          <Route path="trainings/:id" element={<TrainingDetailPage />} />
         </Route>
       </Routes>
     </div>

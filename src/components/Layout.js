@@ -18,6 +18,7 @@ function Layout() {
         <Link to="/documents" style={linkStyle}>Documents</Link>
         <Link to="/quality-events" style={linkStyle}>NCRs</Link>
         <Link to="/audits" style={linkStyle}>Audits</Link>
+        <Link to="/trainings" style={linkStyle}>Trainings</Link>
 
         {/* نعرض اسم المستخدم إذا كان موجودًا */}
         <span style={userInfoStyle}>Welcome, {user ? user.username : 'Guest'}</span>
