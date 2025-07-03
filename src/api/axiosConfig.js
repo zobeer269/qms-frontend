@@ -8,22 +8,32 @@ const apiClient = axios.create({
 
 // "معترض الطلبات" (Request Interceptor)
 apiClient.interceptors.request.use(config => {
-  // --- كود التتبع ---
-  console.log("Interceptor is running for request to:", config.url);
-
   const token = localStorage.getItem('authToken');
 
   if (token) {
-    console.log("Token FOUND in localStorage. Adding it to header.");
     config.headers.Authorization = `Bearer ${token}`;
-  } else {
-    console.log("No token found in localStorage for this request.");
   }
-  // --------------------
-
+  
   return config;
 }, error => {
   return Promise.reject(error);
 });
+
+// Response interceptor for handling authentication errors
+apiClient.interceptors.response.use(
+  response => response,
+  error => {
+    // Handle 401 errors by clearing invalid tokens
+    if (error.response?.status === 401) {
+      localStorage.removeItem('authToken');
+      delete apiClient.defaults.headers.common['Authorization'];
+      // Redirect to login if needed
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default apiClient;
